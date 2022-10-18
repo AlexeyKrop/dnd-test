@@ -1,4 +1,4 @@
-import React, {DragEvent, useState} from 'react';
+import {DragEvent, useState} from 'react';
 import {v1} from 'uuid';
 import './App.css';
 
@@ -9,7 +9,7 @@ type BoardType = {
   id: string, title: string,
   items: ItemType[]
 }
-const App = () => {
+export const App = () => {
   const [boards, setBoards] = useState<BoardType[]>([
     {
       id: v1(), title: 'Users', items: [{id: v1(), order: 1, name: 'Bob'},
@@ -90,4 +90,3 @@ const App = () => {
   );
 }
 
-export default App;
