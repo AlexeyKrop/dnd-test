@@ -1,10 +1,16 @@
 import React, {DragEvent, useState} from 'react';
-import { v1 } from 'uuid';
+import {v1} from 'uuid';
 import './App.css';
 
-
+type ItemType = {
+  id: string, order: number, name: string
+}
+type BoardType = {
+  id: string, title: string,
+  items: ItemType[]
+}
 const App = () => {
-  const [boards, setBoards] = useState([
+  const [boards, setBoards] = useState<BoardType[]>([
     {
       id: v1(), title: 'Users', items: [{id: v1(), order: 1, name: 'Bob'},
         {id: v1(), order: 2, name: 'Mike'},
@@ -24,14 +30,14 @@ const App = () => {
   }
   const onDragLeaveHandle = (e: DragEvent<HTMLDivElement>) => {
   }
-  const onDragStartHandle = (e: DragEvent<HTMLDivElement>, board: any, item: any) => {
+  const onDragStartHandle = (e: DragEvent<HTMLDivElement>, board: BoardType, item: ItemType) => {
     setCurrentBoards(board)
     setCurrentItem(item)
   }
   const onDragEndHandle = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
   }
-  const onDropHandle = (e: DragEvent<HTMLDivElement>, board: any, item: any) => {
+  const onDropHandle = (e: DragEvent<HTMLDivElement>, board: BoardType, item: ItemType) => {
     e.preventDefault()
     const currentIndex = currentBoard.items.indexOf(currentItem)
     currentBoard.items.splice(currentIndex, 1)
@@ -48,7 +54,7 @@ const App = () => {
     }))
   }
 
-  const onCardHandle = (e: DragEvent<HTMLDivElement>, board: any) => {
+  const onCardHandle = (e: DragEvent<HTMLDivElement>, board: BoardType) => {
     board.items.push(currentItem)
     const currentIndex = currentBoard.items.indexOf(currentItem)
     currentBoard.items.splice(currentIndex, 1)
