@@ -43,7 +43,7 @@ const App = () => {
     currentBoard.items.splice(currentIndex, 1)
     const dropIndex = board.items.indexOf(item)
     board.items.splice(dropIndex + 1, 0, currentItem)
-    setBoards(boards.map((b: any) => {
+    setBoards(boards.map(b => {
       if (b.id === board.id) {
         return board
       }
@@ -58,7 +58,7 @@ const App = () => {
     board.items.push(currentItem)
     const currentIndex = currentBoard.items.indexOf(currentItem)
     currentBoard.items.splice(currentIndex, 1)
-    setBoards(boards.map((b: any) => {
+    setBoards(boards.map(b => {
       if (b.id === board.id) {
         return board
       }
